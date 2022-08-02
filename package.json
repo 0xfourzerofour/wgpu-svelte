@@ -1,0 +1,23 @@
+{
+  "name": "svelte-wgpu",
+  "version": "1.0.0",
+  "author": "Joshua Pauline <joshpauline@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/rust/pkg",
+    "packages/web"
+  ],
+  "scripts": {
+    "web:dev": "yarn workspace web dev",
+    "web:build": "yarn workspace web build",
+    "rust:dev": "cd packages/rust && cargo watch -i .gitignore -i \"pkg/*\" -s \"wasm-pack build --target web\"",
+    "rust:build": "cd packages/rust && wasm-pack build --target web",
+    "dev": "concurrently --kill-others-on-fail \"yarn web:dev\"  \"yarn rust:dev\"",
+    "build": "yarn rust:build && yarn web:build",
+    "ci:build": "yarn rust:build && yarn && yarn web:build"
+  },
+  "dependencies": {
+    "concurrently": "^6.3.0"
+  }
+}
