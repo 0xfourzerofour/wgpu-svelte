@@ -1,4 +1,4 @@
-# WASM (with Rust) + Vite + Svelte Monorepo
+# WGPU + Vite + Svelte
 ## Quick Start
 ### Unix
 
